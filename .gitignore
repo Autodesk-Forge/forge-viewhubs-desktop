@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+Web.Keys.Config
+App_Data/
+Thumbs.db
+
 # User-specific files
 *.suo
 *.user
