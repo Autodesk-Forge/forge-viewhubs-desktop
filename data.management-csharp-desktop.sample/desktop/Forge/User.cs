@@ -13,9 +13,14 @@ namespace FPD.Sample.Desktop.Forge
         public string LastName { get; set; }
         public string PictureURL { get; set; }
 
+        public static async Task<bool> IsSessionValid()
+        {
+            return await RestAPI<bool>.RequestAsync("/api/forge/session/isvalid", true);
+        }
+
         public static async Task<User> UserNameAsync()
         {
-            return await RestAPI<User>.RequestAsync("/api/forge/userProfile");
+            return await RestAPI<User>.RequestAsync("/api/forge/userProfile", true);
         }
     }
 }

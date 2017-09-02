@@ -2,6 +2,7 @@
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Threading.Tasks;
 
 namespace FPD.Sample.Desktop
 {
@@ -47,13 +48,9 @@ namespace FPD.Sample.Desktop
             }
         }
 
-        public  static bool IsSessionValid
+        public async static Task<bool> IsSessionValid()
         {
-            get
-            {
-                
-                return true;
-            }
+            return await Forge.User.IsSessionValid();
         }
 
         public static string MachineId
@@ -71,6 +68,6 @@ namespace FPD.Sample.Desktop
             IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);
             if (store.FileExists(FILENAME)) store.DeleteFile(FILENAME);
             _sessionId = string.Empty;
-        }            
+        }
     }
 }

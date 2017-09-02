@@ -2,6 +2,7 @@
 using CefSharp.WinForms;
 using System;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FPD.Sample.Desktop
@@ -60,23 +61,25 @@ namespace FPD.Sample.Desktop
             Cef.Shutdown();
         }
 
-        private void btnSignout_Click(object sender, EventArgs e)
+        private async void btnSignout_Click(object sender, EventArgs e)
         {
             Cef.GetGlobalCookieManager().DeleteCookies(string.Empty, string.Empty);
             SessionManager.Signout();
-            PrepareUserData();
+            await PrepareUserData();
         }
 
-        private void PrepareUserData()
+        private async Task PrepareUserData()
         {
-            if (!SessionManager.HasSession || !SessionManager.IsSessionValid)
+            if (!SessionManager.HasSession || !(await SessionManager.IsSessionValid()))
             {
                 browser.Load("http://localhost:3000/oauth?LocalId=" + SessionManager.MachineId);
                 return;
             }
-            
-            // show user name
+            btnSignout.Visible = true;
 
+            // show user name
+            Forge.User user = await Forge.User.UserNameAsync();
+            lblUserName.Text = string.Format("{0} {1}", user.FirsName, user.LastName);
         }
     }
 }

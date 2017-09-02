@@ -22,8 +22,7 @@ namespace FPD.Sample.Cloud
                 return _client;
             }
         }
-
-
+        
 
         private static IMongoDatabase Database
         {
@@ -34,21 +33,32 @@ namespace FPD.Sample.Cloud
             }
         }
 
-        public static async Task<string> RegisterUser(DynamicDictionary bearer)
+        /// <summary>
+        /// Store the response from Forge POST gettoken
+        /// </summary>
+        /// <param name="autodeskOAuthToken">The POST gettoken response + local_id from Client identification</param>
+        /// <returns>SessionId for this user</returns>
+        public static async Task<string> RegisterUser(DynamicDictionary autodeskOAuthToken)
         {
-            var document = new BsonDocument(bearer.Dictionary);
+            var document = new BsonDocument(autodeskOAuthToken.Dictionary);
 
             try
             {
                 var users = Database.GetCollection<BsonDocument>("users");
                 await users.InsertOneAsync(document);
 
+                // the unique id that identifies the user
                 return document["_id"].AsObjectId.ToString();
             }
             catch (Exception e)
             {
                 return string.Empty;
             }           
+        }
+
+        public static async Task<bool> IsSessionIdValid(string sessionId, string localId)
+        {
+            return true;
         }
     }
 }

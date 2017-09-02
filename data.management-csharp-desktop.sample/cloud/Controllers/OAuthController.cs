@@ -4,6 +4,7 @@ using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 
 namespace FPD.Sample.Cloud.Controllers
@@ -34,6 +35,30 @@ namespace FPD.Sample.Cloud.Controllers
             res.Content = new StringContent(Convert.ToBase64String(userIdentifier), Encoding.UTF8, "text/plain");
 
             return res;
+        }
+
+        [HttpGet]
+        [Route("api/forge/session/isvalid")]
+        public async Task<bool> GetIsSessionValid()
+        {
+            HttpRequest req = HttpContext.Current.Request;
+            if (string.IsNullOrWhiteSpace(req.Headers["sessionId"])) return false;
+            if (string.IsNullOrWhiteSpace(req.Headers["localId"])) return false;
+
+            string sessionId = req.Headers["sessionId"];
+            string localId = req.Headers["localId"];
+
+            // unencrypt the sessionId
+            sessionId = Encoding.UTF8.GetString(System.Web.Security.MachineKey.Unprotect(Convert.FromBase64String(sessionId)));
+
+            return await OAuthDB.IsSessionIdValid(sessionId, localId);
+        }
+
+        [HttpGet]
+        [Route("api/forge/user/profile")]
+        public async Task<string> GetUserProfile()
+        {
+            throw new NotImplementedException();
         }
     }
 }
