@@ -9,7 +9,7 @@ namespace FPD.Sample.Desktop.Forge
 {
     public class User
     {
-        public string FirsName { get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PictureURL { get; set; }
 
@@ -20,7 +20,7 @@ namespace FPD.Sample.Desktop.Forge
 
         public static async Task<User> UserNameAsync()
         {
-            return await RestAPI<User>.RequestAsync("/api/forge/userProfile", true);
+            return await RestAPI<User>.RequestAsync("/api/forge/user/profile", true);
         }
     }
 }

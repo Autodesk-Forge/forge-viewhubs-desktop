@@ -41,9 +41,11 @@
             this.treeDataManagement.Name = "treeDataManagement";
             this.treeDataManagement.Size = new System.Drawing.Size(243, 514);
             this.treeDataManagement.TabIndex = 0;
+            this.treeDataManagement.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeDataManagement_AfterSelect);
             // 
             // btnSignout
             // 
+            this.btnSignout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSignout.Location = new System.Drawing.Point(180, 532);
             this.btnSignout.Name = "btnSignout";
             this.btnSignout.Size = new System.Drawing.Size(75, 23);
@@ -55,6 +57,7 @@
             // 
             // lblUserName
             // 
+            this.lblUserName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblUserName.AutoSize = true;
             this.lblUserName.Location = new System.Drawing.Point(12, 539);
             this.lblUserName.Name = "lblUserName";
