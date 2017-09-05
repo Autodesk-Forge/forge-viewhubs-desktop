@@ -18,7 +18,7 @@ namespace FPD.Sample.Cloud.Pages.OAuth
                 ConfigVariables.FORGE_CLIENT_ID,
                 oAuthConstants.CODE,
                 ConfigVariables.FORGE_CALLBACK_URL,
-                new Scope[] { Scope.DataRead, Scope.DataCreate, Scope.AccountWrite, Scope.BucketDelete },
+                new Scope[] { Scope.DataRead },
                 Page.Request.QueryString["localId"]);
             Response.Redirect(oauthUrl);
         }
