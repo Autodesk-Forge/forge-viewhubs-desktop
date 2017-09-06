@@ -7,7 +7,7 @@
 # Set default behavior for command prompt diff.
 #
 # This is need for earlier builds of msysgit that does not have it on by
-# default for csharp files.
+# default for csharp files. 
 # Note: This is only used by command line
 ###############################################################################
 #*.cs     diff=csharp
