@@ -11,6 +11,9 @@ namespace FPD.Sample.Desktop
         private static string _sessionId;
         private const string FILENAME = "SessionID.txt";
 
+        /// <summary>
+        /// Return the session id stored locally from the server
+        /// </summary>
         public static string SessionId
         {
             get
@@ -37,9 +40,13 @@ namespace FPD.Sample.Desktop
                 writer.WriteLine(value);
                 writer.Close();
                 stream.Close();
+                _sessionId = value;
             }
         }
 
+        /// <summary>
+        /// Return TRUE if there is a session on the local instance. Use IsSessionValid to confirm with server
+        /// </summary>
         public static bool HasSession
         {
             get
@@ -48,11 +55,19 @@ namespace FPD.Sample.Desktop
             }
         }
 
+
+        /// <summary>
+        /// Return TRUE if the session is valid on the server
+        /// </summary>
+        /// <returns></returns>
         public async static Task<bool> IsSessionValid()
         {
             return await Forge.User.IsSessionValid();
         }
 
+        /// <summary>
+        /// MachineID should be unique enough to identify where the request is comming from
+        /// </summary>
         public static string MachineId
         {
             get
@@ -63,6 +78,9 @@ namespace FPD.Sample.Desktop
             }
         }
 
+        /// <summary>
+        /// Remove the local session file
+        /// </summary>
         public static void Signout()
         {
             IsolatedStorageFile store = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly, null, null);

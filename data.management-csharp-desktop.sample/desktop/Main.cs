@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 
 namespace FPD.Sample.Desktop
 {
@@ -51,8 +52,9 @@ namespace FPD.Sample.Desktop
             // remove this event...
             browser.FrameLoadEnd -= Browser_FrameLoadEnd;
 
-            // store the session
             string htmlBody = await e.Browser.FocusedFrame.GetTextAsync();
+
+            // store the session
             SessionManager.SessionId = Regex.Replace(htmlBody, "<[^>]*(>|$)", string.Empty);
 
             // clear the browser
@@ -80,6 +82,7 @@ namespace FPD.Sample.Desktop
 
         private async void PrepareUserData()
         {
+            // make sure this code is being executed on the UI thread
             if (btnSignout.InvokeRequired || browser.InvokeRequired)
             {
                 PrepareUserDataCallback c = new PrepareUserDataCallback(PrepareUserData);
@@ -88,7 +91,7 @@ namespace FPD.Sample.Desktop
             }
 
             if (!SessionManager.HasSession || !(await SessionManager.IsSessionValid())) return;
-
+            
             // empty
             browser.Load(Forge.EndPoints.BaseURL);
 
