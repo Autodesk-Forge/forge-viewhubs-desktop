@@ -1,4 +1,5 @@
-﻿using Autodesk.Forge.Model;
+﻿using Autodesk.Forge;
+using Autodesk.Forge.Model;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -22,7 +23,7 @@ namespace FPD.Sample.Cloud
                 return _client;
             }
         }
-        
+
 
         private static IMongoDatabase Database
         {
@@ -46,7 +47,7 @@ namespace FPD.Sample.Cloud
             {
                 var users = Database.GetCollection<BsonDocument>("users");
                 await users.InsertOneAsync(document);
-                 
+
                 // the unique id that identifies the user
                 return document["_id"].AsObjectId.ToString();
             }
@@ -78,7 +79,18 @@ namespace FPD.Sample.Cloud
             DateTime expiresAt = (DateTime)doc["expires_at"];
             if (expiresAt < DateTime.UtcNow)
             {
+                // refresh the access_token maintaining the session id (document ID on the database)
+                ThreeLeggedApi oauth = new ThreeLeggedApi();
+                DynamicDictionary bearer = await oauth.RefreshtokenAsync(ConfigVariables.FORGE_CLIENT_ID, ConfigVariables.FORGE_CLIENT_SECRET, "refresh_token", (string)doc["refresh_token"]);
 
+                var update = Builders<BsonDocument>.Update
+                    .Set("access_token", (string)bearer.Dictionary["access_token"])
+                    .Set("refresh_token", (string)bearer.Dictionary["refresh_token"])
+                    .Set("expires_at", DateTime.UtcNow.AddSeconds((long)bearer.Dictionary["expires_in"]));
+
+                var result = await users.UpdateOneAsync(filter, update);
+
+                accessToken = (string)bearer.Dictionary["access_token"];
             }
 
             return accessToken;
