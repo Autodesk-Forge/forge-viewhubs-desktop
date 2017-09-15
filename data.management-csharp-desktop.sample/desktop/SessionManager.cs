@@ -9,7 +9,12 @@ namespace FPD.Sample.Desktop
     class SessionManager
     {
         private static string _sessionId;
+#if DEBUG
         private const string FILENAME = "SessionID.txt";
+#else
+        // On release we should use a name that doesn't make sense
+        private const string FILENAME = "SomeRandomName.txt";
+#endif
 
         /// <summary>
         /// Return the session id stored locally from the server

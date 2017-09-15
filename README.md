@@ -1,6 +1,6 @@
 # data.management-csharp-desktop.sample
 
-This sample demonstrate a **Desktop** application that shows BIM 360 Team, BIM 360 Docs and Fusion Team hubs, which respective Projects, Folders, Items and Versions. For each version it is possible to view it using Viewer.
+This sample demonstrates a **Desktop** application that shows BIM 360 Team, BIM 360 Docs and Fusion Team hubs, which respective Projects, Folders, Items and Versions. For each version it is possible to view it using Viewer.
 
 ## Demonstration
 
@@ -10,7 +10,7 @@ See [this quick video](https://twitter.com/augustomaia/status/905178317686439937
 
 ## Architecture
 
-When the user opens the desktop application, it redirects to Autodesk Account sign in page using the Forge Client ID stored on the Cloud module. After authenticating, the **access_token** and **refresh_token** are stored on an MongoDB database, creating a session ID. This ID is encrypted and sent to the Desktop client. 
+When the user opens the desktop application, it redirects to Autodesk Account sign in page using the Forge Client ID stored on the Cloud module. After authenticating, the **access_token** and **refresh_token** are stored on a MongoDB database, creating a session ID. This ID is encrypted and sent to the Desktop client. 
 
 On the next request, the Desktop client provides the Session ID, the Cloud module uses that to get the respective **access_token** and connects to Autodesk. Once the data is acquired, it is adjusted and sent to the Desktop client. 
 
@@ -62,7 +62,7 @@ For AWS Elastic Beanstalk, setup keys from `web.config`. More details soon.
 
 The CEF Sharp library should work on `AnyCPU`, but this sample uses only `x64` version. [This issue](https://github.com/cefsharp/CefSharp/issues/1714) entry explains how to adjust it, if needed.
 
-To keep keys locally, the sample defines a `web.keys.config` file that is added to **.gitignore**. On local development environment, this files stores the keys. When commit to Github, this file is not included. 
+To keep keys locally, the sample defines a `web.keys.config` file that is added to **.gitignore**. On local development environment, this file stores the keys. When commit to Github, this file is not included. 
 
 The AWS Elastic Beanstalk deployment cannot override `web.config` variables on deployment, so this sample includes a **transform** on the `web.Release.config` to remove them. With that it should work.
 

@@ -29,14 +29,14 @@ namespace FPD.Sample.Cloud.Controllers
             // at this point we can store the access & refresh token on a database and return 
             // the respective DB unique ID, that way the application can refresh the token in
             // and the client will not see it. 
-            string sessionId = await OAuthDB.RegisterUser(bearer);
+            string sessionIdUnprotected = await OAuthDB.RegisterUser(bearer);
 
             // and encrypt the database ID to send to the user
-            byte[] userIdentifier = System.Web.Security.MachineKey.Protect(Encoding.UTF8.GetBytes(sessionId));
+            string sessionIdProtected = Convert.ToBase64String(System.Web.Security.MachineKey.Protect(Encoding.UTF8.GetBytes(sessionIdUnprotected)));
 
             // return to user 
             HttpResponseMessage res = Request.CreateResponse(System.Net.HttpStatusCode.OK);
-            res.Content = new StringContent(Convert.ToBase64String(userIdentifier), Encoding.UTF8, "text/plain");
+            res.Content = new StringContent(sessionIdProtected, Encoding.UTF8, "text/plain");
 
             return res;
         }
