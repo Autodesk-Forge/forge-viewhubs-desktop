@@ -3,8 +3,7 @@
 This sample demonstrates a **Desktop** application that shows BIM 360 Team, BIM 360 Docs and Fusion Team hubs, which respective Projects, Folders, Items and Versions. For each version it is possible to view it using Viewer.
 
 ## Demonstration
-
-![](main_screen.png)
+![thumbnail](main_screen.png)
 
 See [this quick video](https://twitter.com/augustomaia/status/905178317686439937).
 
@@ -37,7 +36,12 @@ The cloud server module will store the credentials on a Mongo database. You can 
 Open the `web.config` and edit the Forge Client ID, Secret and Callback URL. The **OAUTH_DATABASE** should point to your MongoDB instance, like: `mongodb://user:pwd@ds1234.mlab.com:56789/databasename`
  
 ```xml
-<appSettings>  <add key="FORGE_CLIENT_ID" value="" />  <add key="FORGE_CLIENT_SECRET" value="" />  <add key="FORGE_CALLBACK_URL" value="" />  <add key="OAUTH_DATABASE" value="" /></appSettings>
+<appSettings>
+  <add key="FORGE_CLIENT_ID" value="" />
+  <add key="FORGE_CLIENT_SECRET" value="" />
+  <add key="FORGE_CALLBACK_URL" value="" />
+  <add key="OAUTH_DATABASE" value="" />
+</appSettings>
 ```
 
 ### Desktop executable
@@ -45,7 +49,9 @@ Open the `web.config` and edit the Forge Client ID, Secret and Callback URL. The
 Open the `app.config` file and specify the webserver address under **appSettings**:
 
 ```xml
-<appSettings>  <add key="serverAddress" value="http://localhost:3000" /></appSettings>
+<appSettings>
+  <add key="serverAddress" value="http://localhost:3000" />
+</appSettings>
 ```
 
 For local testing, the desktop module should work "as is". 
@@ -67,7 +73,12 @@ To keep keys locally, the sample defines a `web.keys.config` file that is added 
 The AWS Elastic Beanstalk deployment cannot override `web.config` variables on deployment, so this sample includes a **transform** on the `web.Release.config` to remove them. With that it should work.
 
 ```xml
-<appSettings>  <add key="FORGE_CLIENT_ID" xdt:Transform="Remove" xdt:Locator="Match(key)" />  <add key="FORGE_CLIENT_SECRET" xdt:Transform="Remove" xdt:Locator="Match(key)" />  <add key="FORGE_CALLBACK_URL" xdt:Transform="Remove" xdt:Locator="Match(key)" />  <add key="OAUTH_DATABASE" xdt:Transform="Remove" xdt:Locator="Match(key)" /></appSettings>
+<appSettings>
+  <add key="FORGE_CLIENT_ID" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+  <add key="FORGE_CLIENT_SECRET" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+  <add key="FORGE_CALLBACK_URL" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+  <add key="OAUTH_DATABASE" xdt:Transform="Remove" xdt:Locator="Match(key)" />
+</appSettings>
 ```
 ## License
 
