@@ -1,5 +1,14 @@
 # data.management-csharp-desktop.sample
 
+![Platforms](https://img.shields.io/badge/platform-Windows-lightgray.svg)
+![.NET](https://img.shields.io/badge/.NET-4.5-blue.svg)
+[![ASP.NET](https://img.shields.io/badge/ASP.NET-4.5-blue.svg)](https://asp.net/)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://opensource.org/licenses/MIT)
+
+[![OAuth2](https://img.shields.io/badge/OAuth2-v1-green.svg)](http://developer.autodesk.com/)
+[![Data-Management](https://img.shields.io/badge/Data%20Management-v2-green.svg)](http://developer.autodesk.com/)
+[![Viewer](https://img.shields.io/badge/Viewer-v2.17-green.svg)](http://developer.autodesk.com/)
+
 This sample demonstrates a **Desktop** application that shows BIM 360 Team, BIM 360 Docs and Fusion Team hubs, which respective Projects, Folders, Items and Versions. For each version it is possible to view it using Viewer.
 
 ## Demonstration
