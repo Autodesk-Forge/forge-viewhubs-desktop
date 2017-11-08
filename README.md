@@ -12,6 +12,7 @@
 This sample demonstrates a **Desktop** application that shows BIM 360 Team, BIM 360 Docs and Fusion Team hubs, which respective Projects, Folders, Items and Versions. For each version it is possible to view it using Viewer.
 
 ## Demonstration
+### Thumbnail
 ![thumbnail](main_screen.png)
 
 See [this quick video](https://twitter.com/augustomaia/status/905178317686439937).
