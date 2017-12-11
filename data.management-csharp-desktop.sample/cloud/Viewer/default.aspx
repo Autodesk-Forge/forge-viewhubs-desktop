@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 
     <!-- The Viewer CSS -->
-    <link rel="stylesheet" href="https://developer.api.autodesk.com/derivativeservice/v2/viewers/style.min.css" type="text/css">
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/derivativeservice/v2/viewers/style.min.css?v=v3.3" type="text/css">
 
     <!-- Developer CSS -->
     <style>
@@ -24,7 +24,7 @@
 <body>
     <!-- The Viewer JS -->
     <script src="https://developer.api.autodesk.com/derivativeservice/v2/viewers/three.min.js"></script>
-    <script src="https://developer.api.autodesk.com/derivativeservice/v2/viewers/viewer3D.min.js?v=v2.17"></script>
+    <script src="https://developer.api.autodesk.com/derivativeservice/v2/viewers/viewer3D.min.js?v=v3.3"></script>
 
     <!-- Developer JS -->
     <script>
@@ -35,7 +35,7 @@
             };
             var documentId = 'urn:' + urn;
             Autodesk.Viewing.Initializer(options, function onInitialized() {
-                Autodesk.Viewing.setApiEndpoint(proxyRoute, '', true);
+                Autodesk.Viewing.endpoint.setEndpointAndApi(proxyRoute, '', true);
                 viewerApp = new Autodesk.Viewing.ViewingApplication('MyViewerDiv');
                 viewerApp.registerViewer(viewerApp.k3D, Autodesk.Viewing.Private.GuiViewer3D);
                 viewerApp.loadDocument(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
