@@ -164,7 +164,8 @@ namespace FPD.Sample.Desktop
             public void OnResourceRedirect(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, ref string newUrl) { }
             public bool OnResourceResponse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response) { return false; }
             public bool OnSelectClientCertificate(IWebBrowser browserControl, IBrowser browser, bool isProxy, string host, int port, X509Certificate2Collection certificates, ISelectClientCertificateCallback callback) { return false; }
-
-        }
+            public bool CanGetCookies(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request) { return true; }
+            public bool CanSetCookie(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, Cookie cookie) { return true; }
+  }
     }
 }
