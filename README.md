@@ -59,9 +59,9 @@ This sample contains 2 projects: `cloud` and `desktop`.
 
 ### Cloud server
 
-The cloud server module will store the credentials on a Mongo database. You can setup an development instance for free at [mLab](https://mlab.com) (or any other provider). Make sure to include a collection named: **users**
+The cloud server module will store the credentials on a Mongo database. You can setup an development instance for free at [mLab](https://mlab.com) (or any other provider). Make sure to include a collection named **users** and add a user that can access the collection.
 
-Open the `web.config` and edit the Forge Client ID, Secret and Callback URL. The **OAUTH_DATABASE** should point to your MongoDB instance, like: `mongodb://user:pwd@ds1234.mlab.com:56789/databasename`
+Open the `web.config` and edit the Forge Client ID, Secret and Callback URL. The **OAUTH_DATABASE** should point to your MongoDB instance, like: `mongodb://user:password@ds1234.mlab.com:56789/databasename`
  
 ```xml
 <appSettings>
