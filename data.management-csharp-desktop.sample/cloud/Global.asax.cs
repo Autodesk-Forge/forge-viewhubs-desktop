@@ -15,6 +15,7 @@ namespace FPD.Sample.Cloud
         {
             // Code that runs on application startup
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
         }
     }
 }

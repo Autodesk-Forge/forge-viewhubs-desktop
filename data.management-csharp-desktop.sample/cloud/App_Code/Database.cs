@@ -29,7 +29,7 @@ namespace FPD.Sample.Cloud
         {
             get
             {
-                if (_database == null) _database = Client.GetDatabase("desktopcloudsample");
+                if (_database == null) _database = Client.GetDatabase(ConfigVariables.OAUTH_DATABASE.Split('/').Last());
                 return _database;
             }
         }

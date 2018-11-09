@@ -46,7 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autodesk.Forge, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autodesk.Forge.1.2.0\lib\net452\Autodesk.Forge.dll</HintPath>
+      <HintPath>..\packages\Autodesk.Forge.1.4.0\lib\net452\Autodesk.Forge.dll</HintPath>
     </Reference>
     <Reference Include="DnsClient, Version=1.1.1.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
       <HintPath>..\packages\DnsClient.1.1.1\lib\net45\DnsClient.dll</HintPath>
