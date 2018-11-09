@@ -20,7 +20,7 @@ Uses [Data Management](https://developer.autodesk.com/en/docs/data/v2) to list h
 
 ## Thumbnail
 
-![thumbnail](images/main_screen.png)
+![thumbnail](/thumbnail.png)
 
 See [this quick video](https://twitter.com/augustomaia/status/905178317686439937).
 
