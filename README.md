@@ -49,7 +49,7 @@ To identify the Desktop client, this sample uses a MachineID identifier. For thi
 1. **Forge Account**: Learn how to create a Forge Account, activate subscription and create an app at [this tutorial](http://learnforge.autodesk.io/#/account/). 
 2. **Visual Studio**: At least the Community edition
 3. **.NET** basic knowledge with C#
-4. **mLab account**: non-SQL online data, create a free development account at [mLab](https://mlab.com)
+4. **MongoDB Atlas account**: MongoDB as a cloud service, create a free development account at [here](https://docs.atlas.mongodb.com/getting-started/)
 
 ## Running locally
 
@@ -59,9 +59,9 @@ This sample contains 2 projects: `cloud` and `desktop`.
 
 ### Cloud server
 
-The cloud server module will store the credentials on a Mongo database. You can setup an development instance for free at [mLab](https://mlab.com) (or any other provider). Make sure to include a collection named **users** and add a user that can access the collection.
+The cloud server module will store the credentials on a Mongo database. You can setup an development instance for free at [MongoDB Atlas](https://docs.atlas.mongodb.com/getting-started/) (or any other provider). Make sure to include a collection named **users** and add a user that can access the collection.
 
-Open the `web.config` and edit the Forge Client ID, Secret and Callback URL. The **OAUTH_DATABASE** should point to your MongoDB instance, like: `mongodb://user:password@ds1234.mlab.com:56789/databasename`
+Open the `web.config` and edit the Forge Client ID, Secret and Callback URL. The **OAUTH_DATABASE** should point to your MongoDB instance, like: `mongodb+srv://kay:myRealPassword@cluster0.mongodb.net/databasename`
  
 ```xml
 <appSettings>
@@ -96,8 +96,6 @@ The `cloud` project should be deployed live, any .NET compatible host should wor
 
 - Appharbor: check [this steps to configure your Forge Client ID & Secret](http://adndevblog.typepad.com/cloud_and_mobile/2017/01/deploying-forge-aspnet-samples-to-appharbor.html).
 - AWS Elastic Beanstalk: check [this tutorial](http://learnforge.autodesk.io/#/deployment/aws/net).
-
-Consider upgrading the mLab account to production.
 
 Then the `desktop` module should be updated with the cloud module address (under **appSettings** file).
 
