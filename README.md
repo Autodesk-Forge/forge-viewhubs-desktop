@@ -49,7 +49,7 @@ To identify the Desktop client, this sample uses a MachineID identifier. For thi
 1. **Forge Account**: Learn how to create a Forge Account, activate subscription and create an app at [this tutorial](http://learnforge.autodesk.io/#/account/). 
 2. **Visual Studio**: At least the Community edition
 3. **.NET** basic knowledge with C#
-4. **mLab account**: non-SQL online data, create a free development account at [mLab](https://mlab.com)
+4. **MongoDB**: noSQL database, [learn more](https://www.mongodb.com/). Or use a online version via [Mongo Altas](https://www.mongodb.com/cloud/atlas) (this is used on this sample)
 
 ## Running locally
 
@@ -59,10 +59,21 @@ This sample contains 2 projects: `cloud` and `desktop`.
 
 ### Cloud server
 
-The cloud server module will store the credentials on a Mongo database. You can setup an development instance for free at [mLab](https://mlab.com) (or any other provider). Make sure to include a collection named **users** and add a user that can access the collection.
+**MongoDB**
 
-Open the `web.config` and edit the Forge Client ID, Secret and Callback URL. The **OAUTH_DATABASE** should point to your MongoDB instance, like: `mongodb://user:password@ds1234.mlab.com:56789/databasename`
- 
+[MongoDB](https://www.mongodb.com) is a no-SQL database based on "documents", which stores JSON-like data. For testing purpouses, you can either use local or live. For cloud environment, try [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) (offers a free tier). With MongoDB Atlas you can set up an account for free and create clustered instances, intructions:
+
+1. Create a account on MongoDB Atlas.
+2. Under "Collections", create a new database (e.g. named `desktopsample`) with a collection (e.g. named `users`).
+3. Under "Command Line Tools", whitelist the IP address to access the database, [see this tutorial](https://docs.atlas.mongodb.com/security-whitelist/). If the sample is running on Heroku, you'll need to open to all (IP `0.0.0.0/0`). Create a new user to access the database. 
+
+At this point the connection string should be in the form of `mongodb+srv://<username>:<password>@clusterX-a1b2c4.mongodb.net/desktopsample?retryWrites=true`. [Learn more here](https://docs.mongodb.com/manual/reference/connection-string/)
+
+There are several tools to view your database, [Robo 3T](https://robomongo.org/) (formerly Robomongo) is a free lightweight GUI that can be used. When it opens, follow instructions [here](https://www.datduh.com/blog/2017/7/26/how-to-connect-to-mongodb-atlas-using-robo-3t-robomongo) to connect to MongoDB Atlas.
+
+**WebConfig**
+
+Open the `web.config` and edit the Forge Client ID, Secret and Callback URL. The **OAUTH_DATABASE** should point to your MongoDB instance. 
 ```xml
 <appSettings>
   <add key="FORGE_CLIENT_ID" value="" />
@@ -115,6 +126,11 @@ Blogs on **Expanding .NET desktop apps into the cloud**
 - [OAuth](https://forge.autodesk.com/blog/expanding-net-desktop-apps-cloud-oauth)
 - [Sample code](https://forge.autodesk.com/blog/expanding-net-desktop-apps-cloud-sample-code)
 - [Running the sample](https://forge.autodesk.com/blog/expanding-net-desktop-apps-cloud-running-sample)
+
+Other APIs:
+
+- [MongoDB for C#](https://docs.mongodb.com/ecosystem/drivers/csharp/) driver
+- [Mongo Altas](https://www.mongodb.com/cloud/atlas) Database-as-a-Service for MongoDB
 
 ### Tips & Tricks
 

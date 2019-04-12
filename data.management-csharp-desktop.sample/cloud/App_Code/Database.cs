@@ -29,7 +29,7 @@ namespace FPD.Sample.Cloud
         {
             get
             {
-                if (_database == null) _database = Client.GetDatabase(ConfigVariables.OAUTH_DATABASE.Split('/').Last());
+                if (_database == null) _database = Client.GetDatabase(ConfigVariables.OAUTH_DATABASE.Split('/').Last().Split('?').First());
                 return _database;
             }
         }
@@ -59,11 +59,18 @@ namespace FPD.Sample.Cloud
 
         public static async Task<bool> IsSessionIdValid(string sessionId, string localId)
         {
-            var filterBuilder = Builders<BsonDocument>.Filter;
-            var filter = filterBuilder.Eq("_id", new ObjectId(sessionId)) & filterBuilder.Eq("local_id", localId);
-            var users = Database.GetCollection<BsonDocument>("users");
-            long count = await users.CountAsync(filter);
-            return (count == 1);
+            try
+            {
+                var filterBuilder = Builders<BsonDocument>.Filter;
+                var filter = filterBuilder.Eq("_id", new ObjectId(sessionId)) & filterBuilder.Eq("local_id", localId);
+                var users = Database.GetCollection<BsonDocument>("users");
+                long count = await users.CountAsync(filter);
+                return (count == 1);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public static async Task<string> GetAccessToken(string sessionId, string localId)
