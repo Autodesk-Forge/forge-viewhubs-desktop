@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 
     <!-- The Viewer CSS -->
-    <link rel="stylesheet" href="https://developer.api.autodesk.com/derivativeservice/v2/viewers/style.min.css?v=v6.0" type="text/css">
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/6.*/style.min.css" type="text/css">
 
     <!-- Developer CSS -->
     <style>
@@ -23,7 +23,7 @@
 </head>
 <body>
     <!-- The Viewer JS -->
-    <script src="https://developer.api.autodesk.com/derivativeservice/v2/viewers/viewer3D.min.js?v=v6.0"></script>
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/6.*/viewer3D.js"></script>
 
     <!-- Developer JS -->
     <script>
