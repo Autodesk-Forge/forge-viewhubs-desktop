@@ -20,7 +20,8 @@ namespace FPD.Sample.Cloud.Pages.OAuth
                 ConfigVariables.FORGE_CALLBACK_URL,
                 new Scope[] { Scope.DataRead },
                 Page.Request.QueryString["localId"]);
-            Response.Redirect(oauthUrl);
+            Response.Redirect(oauthUrl, false);
+            Context.ApplicationInstance.CompleteRequest();
         }
     }
 }

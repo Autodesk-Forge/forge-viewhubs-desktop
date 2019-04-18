@@ -51,7 +51,7 @@ namespace FPD.Sample.Cloud
                 // the unique id that identifies the user
                 return document["_id"].AsObjectId.ToString();
             }
-            catch (Exception e)
+            catch (Exception /*ex*/)
             {
                 return string.Empty;
             }
@@ -64,10 +64,10 @@ namespace FPD.Sample.Cloud
                 var filterBuilder = Builders<BsonDocument>.Filter;
                 var filter = filterBuilder.Eq("_id", new ObjectId(sessionId)) & filterBuilder.Eq("local_id", localId);
                 var users = Database.GetCollection<BsonDocument>("users");
-                long count = await users.CountAsync(filter);
+                long count = await users.CountDocumentsAsync(filter);
                 return (count == 1);
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
                 return false;
             }

@@ -14,7 +14,7 @@ namespace FPD.Sample.Cloud.Controllers
     {
         [HttpGet]
         [Route("api/forge/callback/oauth")] // see Web.Config FORGE_CALLBACK_URL variable
-        public async Task<HttpResponseMessage> OAuthCallback(string code, string state)
+        public async Task<HttpResponseMessage> OAuthCallback(string code, string state = null)
         {
             ThreeLeggedApi oauth = new ThreeLeggedApi();
             DynamicDictionary bearer = await oauth.GettokenAsync(ConfigVariables.FORGE_CLIENT_ID, ConfigVariables.FORGE_CLIENT_SECRET, oAuthConstants.AUTHORIZATION_CODE, code, ConfigVariables.FORGE_CALLBACK_URL);
@@ -78,7 +78,7 @@ namespace FPD.Sample.Cloud.Controllers
 
                 return response;
             }
-            catch(Exception e)
+            catch(Exception /*ex*/)
             {
                 return null;
             }            

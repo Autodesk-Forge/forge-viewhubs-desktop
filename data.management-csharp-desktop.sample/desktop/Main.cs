@@ -13,11 +13,21 @@ namespace FPD.Sample.Desktop
 {
     public partial class Main : Form
     {
-        public ChromiumWebBrowser browser;
+        private ChromiumWebBrowser browser;
 
         public void InitBrowser()
         {
+            // Read this - https://github.com/cefsharp/CefSharp/issues/1714
+#if ISSUE1714
+            var settings = new CefSettings()
+            {
+			    BrowserSubprocessPath = @"x86\CefSharp.BrowserSubprocess.exe"
+            };
+			Cef.Initialize(settings, performDependencyCheck: false, browserProcessHandler: null);
+#else
             Cef.Initialize(new CefSettings());
+#endif
+
             browser = new ChromiumWebBrowser(Forge.EndPoints.OAuthRedirectURL);
 
             browser.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -30,6 +40,24 @@ namespace FPD.Sample.Desktop
             browser.TabIndex = 1;
 
             Controls.Add(browser);
+        }
+
+        private void OnIsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
+        {
+            if (e.IsBrowserInitialized)
+            {
+                var b = ((ChromiumWebBrowser)sender);
+
+                this.InvokeOnUiThreadIfRequired(() => b.Focus());
+            }
+        }
+
+        private void LoadUrl(string url)
+        {
+            if (Uri.IsWellFormedUriString(url, UriKind.RelativeOrAbsolute))
+            {
+                browser.Load(url);
+            }
         }
 
         public Main()

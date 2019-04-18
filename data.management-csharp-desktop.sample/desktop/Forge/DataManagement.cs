@@ -11,9 +11,9 @@ namespace FPD.Sample.Desktop.Forge
     {
         public class Item
         {
-            public string ID;
-            public string Type;
-            public string Text;
+            public string ID = null;
+            public string Type = null;
+            public string Text = null;
         }
 
         private async static Task<TreeNode[]> GetList(string endpoint)
