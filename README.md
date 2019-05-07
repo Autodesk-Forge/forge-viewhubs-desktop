@@ -153,6 +153,8 @@ Other APIs:
 
 1. **Cannot see my BIM 360 projects**: Make sure to provision the Forge App Client ID within the BIM 360 Account, [learn more here](https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps). This requires the Account Admin permission.
 
+2. **cloud module cannot load its dependencies**: first clean up the solution, then delete the `.vs` (hidden) and `packages` folder. Make sure the `cloud` project is set to `AnyCPU` and the `desktop` project is either 32 or 64 bit. Rebuild.
+
 ## License
 
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
