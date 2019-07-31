@@ -161,7 +161,7 @@ This error might come up if the necessary IIS components are not installed on yo
 
 4. **Could not find a part of the path**:
 ![](images/error2.png)
-This error can be fixed by updating the packages used by the project. YOu can follow the solution shown [here](https://stackoverflow.com/questions/32780315/could-not-find-a-part-of-the-path-bin-roslyn-csc-exe), which says that you should run the **Package Manager Console** and execute the following in it:
+This error can be fixed by updating the packages used by the project. You can follow the solution shown [here](https://stackoverflow.com/questions/32780315/could-not-find-a-part-of-the-path-bin-roslyn-csc-exe), which says that you should run the **Package Manager Console** and execute the following in it: \
 `Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r`  
 
 ## License
