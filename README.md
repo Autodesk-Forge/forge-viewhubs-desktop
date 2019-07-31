@@ -3,11 +3,11 @@
 ![Platforms](https://img.shields.io/badge/platform-Windows-lightgray.svg)
 ![.NET](https://img.shields.io/badge/.NET-4.6-blue.svg)
 [![ASP.NET](https://img.shields.io/badge/ASP.NET-4.6-blue.svg)](https://asp.net/)
-[![License](http://img.shields.io/:license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
 [![OAuth2](https://img.shields.io/badge/OAuth2-v1-green.svg)](http://developer.autodesk.com/)
 [![Data-Management](https://img.shields.io/badge/Data%20Management-v2-green.svg)](http://developer.autodesk.com/)
-[![Viewer](https://img.shields.io/badge/Viewer-v6.0-green.svg)](http://developer.autodesk.com/)
+[![Viewer](https://img.shields.io/badge/Viewer-v7.0-green.svg)](http://developer.autodesk.com/)
 
 ![Advanced](https://img.shields.io/badge/Level-Advanced-blue.svg)
 
@@ -153,7 +153,16 @@ Other APIs:
 
 1. **Cannot see my BIM 360 projects**: Make sure to provision the Forge App Client ID within the BIM 360 Account, [learn more here](https://forge.autodesk.com/blog/bim-360-docs-provisioning-forge-apps). This requires the Account Admin permission.
 
-2. **cloud module cannot load its dependencies**: first clean up the solution, then delete the `.vs` (hidden) and `packages` folder. Make sure the `cloud` project is set to `AnyCPU` and the `desktop` project is either 32 or 64 bit. Rebuild.
+2. **Cloud module cannot load its dependencies**: first clean up the solution, then delete the `.vs` (hidden) and `packages` folder. Make sure the `cloud` project is set to `AnyCPU` and the `desktop` project is either 32 or 64 bit. Rebuild.
+
+3. **Specified argument was out of the range of valid values**:  
+![](images/error1.png)
+This error might come up if the necessary IIS components are not installed on your machine. You can solve it by following the solution [here](https://stackoverflow.com/questions/17772216/specified-argument-was-out-of-the-range-of-valid-values-parameter-name-site/18352322#18352322), which basically that you should go to **Control Panel** ->> **Programs** ->> **Programs and Features** ->> **Turn Windows features on or off** ->> **Internet Information Services** and check the checkbox 
+
+4. **Could not find a part of the path**:
+![](images/error2.png)
+This error can be fixed by updating the packages used by the project. YOu can follow the solution shown [here](https://stackoverflow.com/questions/32780315/could-not-find-a-part-of-the-path-bin-roslyn-csc-exe), which says that you should run the **Package Manager Console** and execute the following in it:
+`Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r`  
 
 ## License
 
