@@ -78,7 +78,7 @@ namespace FPD.Sample.Cloud
             var filterBuilder = Builders<BsonDocument>.Filter;
             var filter = filterBuilder.Eq("_id", new ObjectId(sessionId)) & filterBuilder.Eq("local_id", localId);
             var users = Database.GetCollection<BsonDocument>("users");
-            var docs = await users.FindAsync(new BsonDocument());
+            var docs = await await users.Find(filter).ToListAsync();
 
             var doc = docs.First();
             var accessToken = (string)doc["access_token"];
