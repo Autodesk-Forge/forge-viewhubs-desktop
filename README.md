@@ -1,4 +1,4 @@
-# data.management-csharp-desktop.sample
+# Desktop app to view models on hubs (BIM 360 or Fusion Team)
 
 ![Platforms](https://img.shields.io/badge/platform-Windows-lightgray.svg)
 ![.NET](https://img.shields.io/badge/.NET-4.6-blue.svg)
